@@ -1,0 +1,6 @@
+praw
+pandas
+matplotlib
+seaborn
+sklearn
+streamlit
