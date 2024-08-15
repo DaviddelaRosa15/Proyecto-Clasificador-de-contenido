@@ -39,3 +39,14 @@ print(f'Precisión del modelo con los datos de prueba: {int(round(accuracy, 2)*1
 y_pred_train = model.predict(X_train)
 accuracy = accuracy_score(y_train, y_pred_train)
 print(f'Precisión del modelo con los datos de entrenamiento: {int(round(accuracy, 2)*100)}%')
+
+def predict_from_url(url):
+    post = get_post_url(url)
+    processed_text = preprocess_text(post['title'] + ': ' + post['selftext'])
+    prediction = model.predict([processed_text])[0]
+    return prediction
+
+def predict_from_text(text):
+    processed_text = preprocess_text(text)
+    prediction = model.predict([processed_text])[0]
+    return prediction

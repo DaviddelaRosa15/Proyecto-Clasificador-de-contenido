@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-from post import get_posts, get_post_url
+from post import get_posts
 from counter import get_country_mentions
+from model import predict_from_url, predict_from_text
 
 # Definir la búsqueda
 query = 'latinoamericans countries'
@@ -28,3 +29,11 @@ plt.title('Presencia de los países latinoamericanos en los medios')
 plt.xlabel('Número de Menciones')
 plt.ylabel('País')
 plt.show()
+
+input_url = input("Ingrese la URL del post: ")
+prediction = predict_from_url(input_url)
+print(f'La predicción para el post es: {prediction}')
+
+input_text = input("Ingrese el texto del post: ")
+prediction = predict_from_text(input_text)
+print(f'La predicción para el post es: {prediction}')
