@@ -1,7 +1,6 @@
 praw
 pandas
-matplotlib
-seaborn
+plotly
 sklearn
 streamlit
 python-dotenv
