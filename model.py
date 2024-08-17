@@ -7,11 +7,8 @@ import spacy
 import pandas as pd
 from post import get_post_url
 
-# Descargar el modelo
-spacy.cli.download("en_core_web_sm")
-
 #Colocando el idioma de inglés
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("./en_core_web_sm/en_core_web_sm-3.7.1")
 
 #Funcion para preprocesar el texto
 def preprocess_text(text):
