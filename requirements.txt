@@ -1,8 +1,7 @@
-praw
 pandas
+scikit-learn
+praw
 plotly
-sklearn
 streamlit
 python-dotenv
 spacy
-python -m spacy download en_core_web_sm

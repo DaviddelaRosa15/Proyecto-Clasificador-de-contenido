@@ -5,7 +5,7 @@ Este proyecto tiene como objetivo clasificar contenido de noticias en diferentes
 ## Requisitos
 
 - Python 3.7 o superior
-- Los paquetes listados en `requirements.txt`
+- Las librerías listados en `requirements.txt`
 - Conexión a internet para descargar el módulo de lenguaje de Spacy
 
 ## Instalación
@@ -23,7 +23,7 @@ cd tu_repositorio
 
 ### 2. Instalar Dependencias
 
-Instala los paquetes requeridos utilizando el archivo requirements.txt:
+Instala las librerías requeridas utilizando el archivo requirements.txt:
 
 ```bash
 pip install -r requirements.txt
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 ### 3. Descargar el Módulo de Lenguaje Inglés de Spacy
 
-El proyecto utiliza Spacy para procesamiento de lenguaje natural. Necesitas descargar el módulo de lenguaje inglés:
+El proyecto utiliza Spacy para procesamiento de lenguaje natural. Necesitas descargar el paquete de lenguaje inglés:
 
 ```bash
 python -m spacy download en_core_web_sm
