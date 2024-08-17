@@ -1,15 +1,11 @@
 import praw
 import pandas as pd
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
+import streamlit as st
 
 # Configura tus credenciales de Reddit
-client_id = os.getenv('CLIENT_ID')
-client_secret = os.getenv('CLIENT_SECRET')
-user_agent = os.getenv('USER_AGENT')
+client_id = st.secrets["client_id"]
+client_secret = st.secrets["client_secret"]
+user_agent = st.secrets["user_agent"]
 
 # Autenticación con Reddit
 reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
