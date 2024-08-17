@@ -29,21 +29,13 @@ Instala las librerías requeridas utilizando el archivo requirements.txt:
 pip install -r requirements.txt
 ```
 
-### 3. Descargar el Módulo de Lenguaje Inglés de Spacy
-
-El proyecto utiliza Spacy para procesamiento de lenguaje natural. Necesitas descargar el paquete de lenguaje inglés:
-
-```bash
-python -m spacy download en_core_web_sm
-```
-
-### 4. Colocar el Archivo data_train.csv
+### 3. Colocar el Archivo data_train.csv
 
 Asegúrate de que el archivo data_train.csv esté en la ruta especificada en el repositorio. Si deseas agregar más datos para el entrenamiento, coloca el archivo en la misma ubicación:
 
 ruta/a/tu/proyecto/data_train.csv
 
-### 5. Ejecutar la Aplicación
+### 4. Ejecutar la Aplicación
 
 Por último, ejecuta el siguiente comando para iniciar la aplicación en Streamlit:
 
