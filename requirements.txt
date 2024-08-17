@@ -4,4 +4,4 @@ praw
 plotly
 streamlit
 python-dotenv
-spacy
+spacy==3.5.0  # Usa la versión recomendada
