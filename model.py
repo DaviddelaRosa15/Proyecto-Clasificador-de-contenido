@@ -33,12 +33,12 @@ model = make_pipeline(CountVectorizer(), MultinomialNB())
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f'Precisión del modelo con los datos de prueba: {int(round(accuracy, 2)*100)}%')
+accuracy_test = accuracy_score(y_test, y_pred)
+print(f'Precisión del modelo con los datos de prueba: {int(round(accuracy_test, 2)*100)}%')
 
 y_pred_train = model.predict(X_train)
-accuracy = accuracy_score(y_train, y_pred_train)
-print(f'Precisión del modelo con los datos de entrenamiento: {int(round(accuracy, 2)*100)}%')
+accuracy_train = accuracy_score(y_train, y_pred_train)
+print(f'Precisión del modelo con los datos de entrenamiento: {int(round(accuracy_train, 2)*100)}%')
 
 def predict_from_url(url):
     post = get_post_url(url)

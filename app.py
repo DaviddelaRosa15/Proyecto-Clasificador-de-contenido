@@ -1,8 +1,9 @@
 import plotly.express as px
 import streamlit as st
+import pandas as pd
 from post import get_posts
 from counter import get_country_mentions
-from model import predict_from_url, predict_from_text
+from model import train_df, accuracy_train, accuracy_test, predict_from_url, predict_from_text
 
 # Definir la búsqueda
 query = 'latinoamericans countries'
@@ -77,7 +78,30 @@ st.subheader('Gráfico de Barras: Fechas de las publicaciones')
 st.write("El segundo gráfico analiza la distribución temporal de las noticias recopiladas. Al observar las fechas de publicación, podemos identificar patrones temporales, como picos de actividad mediática, que pueden estar relacionados con eventos importantes o tendencias en la región.")
 st.plotly_chart(publication_dates_fig)
 
-# Sección 3: Interacción con el Modelo
+# Sección 3: Datos de Entrenamiento y Precisión del Modelo
+st.header('Datos de Entrenamiento y Precisión del Modelo')
+
+# Ejemplo de datos de entrenamiento
+st.subheader('Resumen de los Datos de Entrenamiento')
+st.write("Aquí se presentan algunos datos usados para entrenar el modelo:")
+st.write(train_df.head(10))
+
+# Precisión del modelo
+st.subheader('Precisión del Modelo')
+
+accuracy_data = pd.DataFrame({
+    'Conjunto de Datos': ['Entrenamiento', 'Prueba'],
+    'Precisión': [accuracy_train, accuracy_test]
+})
+
+st.write("Precisión del modelo en diferentes conjuntos de datos:")
+fig = px.bar(accuracy_data, x='Conjunto de Datos', y='Precisión', color='Conjunto de Datos', 
+             text='Precisión', height=400)
+fig.update_traces(texttemplate='%{text:.2%}', textposition='outside')
+fig.update_yaxes(range=[0, 1])
+st.plotly_chart(fig)
+
+# Sección 4: Interacción con el Modelo
 st.header('Modelo Clasificador de Noticias')
 st.write("""
 Para clasificar nuevas noticias, utilice la interfaz que se proporciona a continuación. Ingrese la URL o el texto de la noticia, y el modelo automático clasificará la noticia según las características de su contenido.
