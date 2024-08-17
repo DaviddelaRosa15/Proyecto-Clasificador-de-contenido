@@ -7,8 +7,13 @@ import spacy
 import pandas as pd
 from post import get_post_url
 
-# Descargar el modelo
-spacy.cli.download("en_core_web_sm")
+# Descargar e instalar el modelo (si no está ya instalado)
+try:
+    spacy.load("en_core_web_sm")
+except OSError:
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"], check=True)
+    spacy.load("en_core_web_sm")
 
 #Colocando el idioma de inglés
 nlp = spacy.load("en_core_web_sm")
