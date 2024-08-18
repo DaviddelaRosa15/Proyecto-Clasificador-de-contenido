@@ -88,6 +88,8 @@ with tab2:
 
     # Ejemplo de datos de entrenamiento
     st.subheader('Resumen de los Datos de Entrenamiento')
+    st.write("Cantidad de datos: 103")
+    st.write("Idioma de las noticias: Ingles")
     st.write("Aquí se presentan algunos datos usados para entrenar el modelo:")
     st.write(train_df.head(10))
 
