@@ -19,6 +19,9 @@ def preprocess_text(text):
 #Creando el dataframe para entrenar el modelo
 train_df = pd.read_csv('data_train.csv')
 
+#Obteniendo las categorías únicas
+unique_targets = train_df['target'].unique()
+
 #Separando los datos de entrenamiento y evaluación para el modelo
 X_train, X_test, y_train, y_test = train_test_split(
     train_df['processed_text'], train_df['target'],

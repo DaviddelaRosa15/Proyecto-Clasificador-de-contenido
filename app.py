@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 from post import get_posts
 from counter import get_country_mentions
-from model import train_df, accuracy_train, accuracy_test, predict_from_url, predict_from_text
+from model import train_df, accuracy_train, accuracy_test, unique_targets, predict_from_url, predict_from_text
 
 # Definir la búsqueda
 query = 'latinoamericans countries'
@@ -85,6 +85,51 @@ st.header('Datos de Entrenamiento y Precisión del Modelo')
 st.subheader('Resumen de los Datos de Entrenamiento')
 st.write("Aquí se presentan algunos datos usados para entrenar el modelo:")
 st.write(train_df.head(10))
+
+st.subheader("Categorías Utilizadas para el Modelo")
+
+# Obtener y mostrar las categorías distintas
+if 'target' in train_df.columns:
+    # Crear una lista con las categorías para mostrar
+    categories_list = "<ul>" + "".join([f"<li>{category}</li>" for category in unique_targets]) + "</ul>"
+    
+    # Mostrar las categorías
+    st.write("Las categorías en las que se trabajará son las siguientes:")
+    st.markdown(categories_list, unsafe_allow_html=True)
+
+    # Contar el número de categorías distintas
+    num_categories = len(unique_targets)
+    st.write(f"Número de categorías distintas: {num_categories}")
+
+      # Contar la cantidad de noticias por cada categoría
+    category_counts = train_df['target'].value_counts()
+    
+    # Crear un gráfico de barras horizontales con Plotly
+    fig = px.bar(category_counts, 
+                 x=category_counts.values, 
+                 y=category_counts.index,
+                 orientation='h',
+                 color=category_counts.values,
+                 color_continuous_scale='Viridis',
+                 labels={'x': 'Cantidad de Noticias', 'y': 'Categoría'},
+                 title='Cantidad de Noticias por Categoría',
+                 text=category_counts.values,
+                 text_auto=True)
+    
+    # Personalizar el diseño del gráfico
+    fig.update_layout(
+        title_font_size=24,
+        xaxis_title_font_size=18,
+        yaxis_title_font_size=18,
+        legend_title_font_size=16,
+        font_size=14,
+        xaxis=dict(showgrid=False),
+        yaxis=dict(showgrid=False)
+    )
+    
+    st.plotly_chart(fig)
+else:
+    st.write("La columna 'target' no se encuentra en el archivo CSV. Por favor, revisa el archivo.")
 
 # Precisión del modelo
 st.subheader('Precisión del Modelo')
