@@ -155,7 +155,6 @@ st.plotly_chart(cm_train_fig)
 cm_test_fig = plot_confusion_matrix(cm_test_df, 'Matriz de Confusión - Datos de Prueba')
 st.plotly_chart(cm_test_fig)
 
-
 # Sección 4: Interacción con el Modelo
 st.header('Modelo Clasificador de Noticias')
 st.write("""
@@ -190,6 +189,17 @@ with st.expander("Clasificar por Texto"):
             st.write(f'La noticia pertenece a la categoría: **{prediction}**')
         else:
             st.write("Por favor, ingresa el texto de la noticia.")
+
+# Nueva sección de Resultados
+st.subheader('Resultados')
+
+# Obtener la categoría más frecuente
+most_common_category = category_counts.idxmax()
+most_common_count = category_counts.max()
+
+st.write("En base a los datos de entrenamiento que obtuvimos de **Reddit**, la categoría de noticias sobre la cual más se habla es la siguiente:")
+st.write(f"**Categoría predominante:** {most_common_category}")
+st.write(f"**Número de noticias clasificadas:** {most_common_count}")
 
 st.header('Acerca de')
 st.write("""
