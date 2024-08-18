@@ -2,7 +2,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 import spacy
 import pandas as pd
 from post import get_post_url
@@ -42,6 +42,14 @@ print(f'Precisión del modelo con los datos de prueba: {int(round(accuracy_test,
 y_pred_train = model.predict(X_train)
 accuracy_train = accuracy_score(y_train, y_pred_train)
 print(f'Precisión del modelo con los datos de entrenamiento: {int(round(accuracy_train, 2)*100)}%')
+
+# Calcular las matrices de confusión
+cm_train = confusion_matrix(y_train, y_pred_train, labels=unique_targets)
+cm_test = confusion_matrix(y_test, y_pred, labels=unique_targets)
+
+# Convertir las matrices de confusión a DataFrames para plotly
+cm_train_df = pd.DataFrame(cm_train, index=unique_targets, columns=unique_targets)
+cm_test_df = pd.DataFrame(cm_test, index=unique_targets, columns=unique_targets)
 
 def predict_from_url(url):
     post = get_post_url(url)

@@ -3,7 +3,8 @@ import streamlit as st
 import pandas as pd
 from post import get_posts
 from counter import get_country_mentions
-from model import train_df, accuracy_train, accuracy_test, unique_targets, predict_from_url, predict_from_text
+from model import train_df, accuracy_train, accuracy_test, unique_targets, cm_train_df, cm_test_df, predict_from_url, predict_from_text
+from confusion_matrix import plot_confusion_matrix
 
 # Definir la búsqueda
 query = 'latinoamericans countries'
@@ -145,6 +146,15 @@ fig = px.bar(accuracy_data, x='Conjunto de Datos', y='Precisión', color='Conjun
 fig.update_traces(texttemplate='%{text:.2%}', textposition='outside')
 fig.update_yaxes(range=[0, 1])
 st.plotly_chart(fig)
+
+# Mostrar la matriz de confusión para los datos de entrenamiento
+cm_train_fig = plot_confusion_matrix(cm_train_df, 'Matriz de Confusión - Datos de Entrenamiento')
+st.plotly_chart(cm_train_fig)
+
+# Mostrar la matriz de confusión para los datos de prueba
+cm_test_fig = plot_confusion_matrix(cm_test_df, 'Matriz de Confusión - Datos de Prueba')
+st.plotly_chart(cm_test_fig)
+
 
 # Sección 4: Interacción con el Modelo
 st.header('Modelo Clasificador de Noticias')
