@@ -3,9 +3,9 @@ import pandas as pd
 import streamlit as st
 
 # Configura tus credenciales de Reddit
-client_id = "MjiHp895JnQFw35McT3OEA"
-client_secret = "IT6-uhSZQvxHwAqN9YTBpgnNatqAkA"
-user_agent = "No_Willingness_652"
+client_id = st.secrets["client_id"]
+client_secret = st.secrets["client_secret"]
+user_agent = st.secrets["user_agent"]
 
 # Autenticación con Reddit
 reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
